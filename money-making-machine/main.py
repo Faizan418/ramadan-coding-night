@@ -3,54 +3,121 @@ import random
 import time
 import requests
 
-st.title("Money Making Machine By Muhammad Faizan...")
+# Set page config with icon, title, and wide layout
+st.set_page_config(page_title="Money Making Machine", page_icon="💰", layout="wide")
+
+# Custom CSS for stylish UI
+st.markdown(
+    """
+    <style>
+        .main-title {
+            text-align: center;
+            font-size: 40px;
+            color: #28a745;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .stButton > button {
+            background-color: #28a745;
+            color: white;
+            border-radius: 12px;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+        .stButton > button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        .box-style {
+            background: linear-gradient(135deg, #ffffff, #f4f4f4);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .money-display {
+            font-size: 22px;
+            color: #155724;
+            background-color: #d4edda;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Title and description
+st.markdown("<h1 class='main-title'>💰 Money Making Machine By Muhammad Faizan</h1>", unsafe_allow_html=True)
+st.markdown("<p class='sub-title'>Generate money, explore side hustles, and get inspired!</p>", unsafe_allow_html=True)
+
+# Money Generator Section
+st.markdown("<div class='box-style'>", unsafe_allow_html=True)
+st.subheader("💸 Instant Cash Generator")
 
 def generate_money():
     return random.randint(1, 100)
 
-st.subheader("Instant Cash Generator")
-if st.button("Generate Money"):
+if st.button("💵 Generate Money"):
     st.write("Counting your money...")
-    time.sleep(4)
+    time.sleep(2)
     amount = generate_money()
-    st.success(f"Your made ${amount}")
+    st.markdown(f"<div class='money-display'>🎉 You made **${amount}**</div>", unsafe_allow_html=True)
 
+st.markdown("</div>", unsafe_allow_html=True)
 
-#.................................. Function to get side hustle ideas from a server
+# Side Hustle Ideas Section
+st.markdown("<div class='box-style'>", unsafe_allow_html=True)
+st.subheader("🚀 Side Hustle Ideas")
+
 def fetch_side_hustle():
     try:
-        #.......................... Try to get data from local server
         response = requests.get("http://127.0.0.1:8000/side_hustles")
-        if response.status_code == 200:  # If request successful
-            hustles = response.json()  # Convert response to JSON
-            return hustles["side_hustle"]  # Return the hustle idea
+        if response.status_code == 200:
+            hustles = response.json()
+            return hustles.get("side_hustle", "Freelancing")
         else:
-            return "Freelancing"  # Default response if server fails
-
+            return "Freelancing"
     except:
-        return "Something went wrong!"  # Error message if request fails
+        return "Something went wrong!"
 
+if st.button("💼 Generate Hustle"):
+    idea = fetch_side_hustle()
+    st.info(f"💡 {idea}")
 
-#.................................... Create a section for side hustle ideas
-st.subheader("Side Hustle Ideas")
-if st.button("Generate Hustle"):  # When user clicks button
-    idea = fetch_side_hustle()  # Get a hustle idea
-    st.success(idea)  # Show the idea
+st.markdown("</div>", unsafe_allow_html=True)
 
+# Money Motivation Quotes Section
+st.markdown("<div class='box-style'>", unsafe_allow_html=True)
+st.subheader("📢 Money-Making Motivation")
 
-#.................................... Function to get money-related quotes from server
 def fetch_money_quote():
     try:
         response = requests.get("http://127.0.0.1:8000/money_quotes")
-        if response.states_code == 200:
+        if response.status_code == 200:
             quotes = response.json()
-            return quotes["money_quote"]
+            return quotes.get("money_quote", "Money is the root of all evil")
         else:
             return "Money is the root of all evil"
     except:
         return "Something went wrong!"
-#................................... Create a section for motivation quotes
-st.subheader("Money-Making Motivation")
-if st.button("Get Inspired"):  # When user clicks button
-    quote = fetch_money_quote()  # Get a quote
-    st.info(quote)  # Show the quote
+
+if st.button("🔥 Get Inspired"):
+    quote = fetch_money_quote()
+    st.info(f"📜 {quote}")
+
+st.markdown("</div>", unsafe_allow_html=True)
+
+# Footer
+st.markdown("---")
+st.markdown("<p style='text-align: center; font-size: 16px; color: #666;'>Built with ❤️ using Streamlit</p>", unsafe_allow_html=True)
