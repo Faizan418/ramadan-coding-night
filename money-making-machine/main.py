@@ -93,7 +93,7 @@ def fetch_side_hustle():
 
 if st.button("💼 Generate Hustle"):
     idea = fetch_side_hustle()
-    st.info(f"💡 {idea}")
+    st.info(f"📜 {idea}")
 
 st.markdown("</div>", unsafe_allow_html=True)
 
