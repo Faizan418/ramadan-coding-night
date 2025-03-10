@@ -120,4 +120,4 @@ st.markdown("</div>", unsafe_allow_html=True)
 
 # Footer
 st.markdown("---")
-st.markdown("<p style='text-align: center; font-size: 16px; color: #666;'>Built with ❤️ using Streamlit</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 16px; color: #666;'>Build with ❤️ by [Muhammad Faizan](https://github.com/Faizan418)</p>", unsafe_allow_html=True)
