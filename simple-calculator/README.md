@@ -1,7 +1,7 @@
 # Projects Command's
 
-uv init deployment
-cd deployment
+uv init simple calculator
+cd calculator
 uv add streamlit 
 
 .venv\Scripts\activate
