@@ -1,5 +1,5 @@
 # Import the chainlit library and alias it as 'cl'
-import chainlit as cl # type: ignore
+import chainlit as cl
 
 
 # Decorator to handle incoming messages
